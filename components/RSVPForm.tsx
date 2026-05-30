@@ -7,6 +7,7 @@ interface RSVPFormProps {
 
 export interface RSVPData {
   name: string;
+  email: string;
   attending: boolean;
   numGuests: number;
   comments: string;
@@ -16,6 +17,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onSubmit, isLoading = false 
   const [step, setStep] = useState<'choice' | 'details'>('choice');
   const [attending, setAttending] = useState<boolean | null>(null);
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [numGuests, setNumGuests] = useState(1);
   const [comments, setComments] = useState('');
 
@@ -36,8 +38,14 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onSubmit, isLoading = false 
       return;
     }
 
+    if (!email.trim()) {
+      alert('Please enter your email');
+      return;
+    }
+
     onSubmit({
       name,
+      email,
       attending: attending || false,
       numGuests: attending ? numGuests : 0,
       comments,
@@ -72,6 +80,18 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onSubmit, isLoading = false 
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-brown font-semibold mb-2">Your Email *</label>
+            <input
+              type="email"
+              className="input-field"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
               required
             />
           </div>

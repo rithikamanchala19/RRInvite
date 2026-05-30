@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'rangapravesham2024';
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -15,7 +15,7 @@ export default function handler(
     }
 
     try {
-      const stats = db.getAdminStats();
+      const stats = await db.getAdminStats();
       res.status(200).json({ success: true, ...stats });
     } catch (error) {
       res.status(500).json({ error: 'Failed to fetch admin data' });

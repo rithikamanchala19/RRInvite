@@ -32,7 +32,7 @@ An elegant, Indian-themed interactive invitation website for Rithika's Rangaprav
 - **Frontend**: Next.js 13+ with TypeScript and React
 - **Styling**: Tailwind CSS with custom CSS for animations
 - **Backend**: Next.js API Routes
-- **Database**: In-memory storage (easily upgradeable to PostgreSQL/MongoDB)
+- **Database**: PostgreSQL via Prisma for persistent RSVP storage
 - **Deployment**: Vercel-ready
 
 ## Getting Started
@@ -50,6 +50,20 @@ An elegant, Indian-themed interactive invitation website for Rithika's Rangaprav
 2. **Create environment file** (optional - defaults provided)
    ```bash
    cp .env.example .env.local
+   ```
+
+3. **Set up PostgreSQL**
+   - Create a Postgres database locally or use an external provider
+   - Update `DATABASE_URL` in `.env.local`
+
+4. **Run Prisma migration**
+   ```bash
+   npm run migrate:dev -- --name init
+   ```
+
+5. **Run development server**
+   ```bash
+   npm run dev
    ```
 
 3. **Run development server**

@@ -55,16 +55,35 @@ const Guests: NextPage = () => {
           <MandalaDesign />
         </div>
         <div className="mandala-bottom-left">
-          <MandalaDesign />
+          <img
+            src="/mandala.png"
+            alt="Mandala decoration"
+            className="mandala-image"
+          />
         </div>
         <div className="mandala-bottom-right">
           <MandalaDesign />
         </div>
+        <div className="newindiv-lotus">
+          <img
+            src="/lotussinglebetter.png"
+            alt="Lotus decoration"
+            className="lotus-single"
+          />
+        </div>
         <div className="lotus-left">
-          <LotusDesign />
+          <img
+            src="/lotussinglebetter.png"
+            alt="Lotus decoration"
+            className="lotus-single"
+          />
         </div>
         <div className="lotus-right">
-          <LotusDesign />
+          <img
+            src="/lotusgroupbetter.png"
+            alt="Lotus group decoration"
+            className="lotus-group"
+          />
         </div>
         <div className="garland-left">
           <FlowerGarlands />

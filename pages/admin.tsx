@@ -6,6 +6,7 @@ import { MandalaDesign, LotusDesign } from '@/components/DecorationSvgs';
 interface AdminGuest {
   id: string;
   name: string;
+  email: string;
   attending: boolean;
   numGuests: number;
   comments: string;
@@ -153,6 +154,7 @@ const Admin: NextPage = () => {
                           <div className="flex justify-between items-start mb-2">
                             <div>
                               <p className="text-brown font-semibold text-lg">{guest.name}</p>
+                              <p className="text-sm text-gray-500 mb-1">{guest.email}</p>
                               <p className="text-sm text-pink">
                                 Status:{' '}
                                 <span className={guest.attending ? 'text-teal font-semibold' : 'text-brown font-semibold'}>

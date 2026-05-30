@@ -8,7 +8,6 @@ import { RSVPForm, type RSVPData } from '@/components/RSVPForm';
 import {
   FlowerGarlands,
   LotusDesign,
-  MandalaDesign,
   PeacockFeathers,
 } from '@/components/DecorationSvgs';
 
@@ -54,35 +53,61 @@ const Home: NextPage = () => {
 
       <div className="main-container">
         {/* Decorative Elements */}
-        <div className="mandala-top-left">
-          <MandalaDesign />
-        </div>
-        <div className="mandala-top-right">
-          <MandalaDesign />
-        </div>
-        <div className="mandala-bottom-left">
-          <MandalaDesign />
-        </div>
-        <div className="mandala-bottom-right">
-          <MandalaDesign />
+        
+        
+        <div className="newindiv-lotus">
+          <img
+            src="/lotussinglebetter.png"
+            alt="Lotus decoration"
+            className="lotus-single"
+          />
         </div>
         <div className="lotus-left">
-          <LotusDesign />
+          <img
+            src="/lotussinglebetter.png"
+            alt="Lotus decoration"
+            className="lotus-single"
+          />
         </div>
         <div className="lotus-right">
-          <LotusDesign />
+          <img
+            src="/lotusgroupbetter.png"
+            alt="Lotus group decoration"
+            className="lotus-group"
+          />
         </div>
+        <div className="mandala-bottom-left">
+          <img
+            src="/mandala.png"
+            alt="Mandala decoration"
+            className="mandala-image"
+          />
+        </div>
+        <div className="mandala-center">
+          <img
+            src="/mandala.png"
+            alt="Mandala decoration"
+            className="mandala-image"
+          />
+        </div>
+        <div className="mandala-bottom-right">
+          <img
+            src="/mandala.png"
+            alt="Mandala decoration"
+            className="mandala-image"
+          />
+        </div>
+        <div className="peacock-feathers">
+          <PeacockFeathers />
+        </div>
+        {/* <div className="peacock-feathers top-right-feathers">
+          <PeacockFeathers />
+        </div> */}
         <div className="garland-left">
           <FlowerGarlands />
         </div>
         <div className="garland-right">
           <FlowerGarlands />
-        </div>
-        <div className="peacock-feathers">
-          <PeacockFeathers />
-        </div>
-        <div className="lotus-cluster">
-          <LotusDesign />
         </div>
 
         {/* Main Content */}

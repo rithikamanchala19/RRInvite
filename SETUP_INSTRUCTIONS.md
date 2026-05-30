@@ -13,9 +13,9 @@ Open: http://localhost:3000
 Edit `pages/index.tsx` around line 50:
 ```tsx
 <InviteDetails
-  date="Saturday, June 15,  CHANGE THIS2024"  // 
-  time="6:00 PM  CHANGE THIS  onwards"          // 
-  location="The Grand Ballroom,  CHANGE THISMumbai"  // 
+  date="Sunday, July 26th, 2026"  // 
+  time="3:00PM (Seating starts at 2:30 PM)"          // 
+  location="Rosary High School"  // 
   attire="Traditional"
 />
 ```

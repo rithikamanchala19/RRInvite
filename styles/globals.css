@@ -82,11 +82,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .main-container::before {
   left: 0;
+  display:none;
 }
 
 .main-container::after {
   right: 0;
   transform: scaleX(-1);
+  display:none;
 }
 
 /* Mandala corner decorations */
@@ -112,16 +114,42 @@ h1, h2, h3, h4, h5, h6 {
   transform: scaleX(-1);
 }
 
+.mandala-bottom-left,
+.mandala-center,
+.mandala-bottom-right {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.28));
+}
+
 .mandala-bottom-left {
-  bottom: -52px;
-  left: -52px;
-  transform: scaleY(-1);
+  bottom: -350px;
+  left: -350px;
+  transform: scaleY(-1) scale(0.56);
+  opacity: 0.1;
+}
+
+.mandala-center {
+  bottom: 15px;
+  left: -130px;
+  transform: scaleY(-1) scale(0.4);
+  opacity: 0.1;
 }
 
 .mandala-bottom-right {
-  bottom: -52px;
-  right: -52px;
-  transform: scale(-1);
+  bottom: -350px;
+  right: 400px;
+  transform: scale(0.50);
+  opacity: 0.1;
+}
+
+.mandala-bottom-left .mandala-image,
+.mandala-center .mandala-image,
+.mandala-bottom-right .mandala-image {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Lotus side decorations */
@@ -135,15 +163,59 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .lotus-left {
-  left: 1.5vw;
-  top: 77%;
-  transform: translateY(-50%) scale(0.92);
+  left: -35vw;
+  top: 53vw;
+  transform: translateY(-50%) scale(1.3) scaleX(-1);
 }
 
 .lotus-right {
-  right: 2vw;
-  top: 76%;
+  right: -23vw;
+  top: 42vw;
   transform: translateY(-50%) scaleX(-1) scale(1.12);
+}
+
+.newindiv-lotus {
+  position: fixed;
+  left: 20vw;
+  top: 74%;
+  width: min(14vw, 140px);
+  transform: translateY(-50%) scale(5);
+  opacity: 0.82;
+  pointer-events: none;
+  z-index: 0;
+  display:none;
+}
+
+.newindiv-lotus img,
+.newindiv-lotus .newindiv-lotus-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Lotus group image sizing for right-side decoration */
+.lotus-right img,
+.lotus-right .lotus-group {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Left lotus single image sizing */
+.lotus-left img,
+.lotus-left .lotus-single {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.garland-left img,
+.garland-right img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform:scale(2);
+  top:10px;
 }
 
 .garland-left,
@@ -157,32 +229,59 @@ h1, h2, h3, h4, h5, h6 {
 
 .garland-left,
 .garland-right {
-  top: -4px;
+  top: -30px;
   width: 190px;
   height: 500px;
-  opacity: 0.76;
+  opacity: 0.85;
   filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.32));
 }
 
+.garland-left,
+.garland-right {
+  overflow: hidden;
+}
+
+.garland-left img,
+.garland-right img {
+  position: relative;
+  width: auto;
+  left: 80px;   /* shift image inside crop box */
+  top: 100px;    /* shift image vertically */
+}
+
 .garland-left {
-  left: -54px;
+  left: 0px;
+  transform: scale(.9);
 }
 
 .garland-right {
-  right: -54px;
+  right: 0px;
   transform: scaleX(-1);
+  transform: scale(.9) scaleX(-1);
 }
 
 .peacock-feathers {
-  left: max(-24px, 1vw);
-  bottom: 4px;
+  left: max(-180px, 2vw);
+  bottom: 250px;
   width: min(30vw, 340px);
-  opacity: 0.78;
-  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.45));
+  opacity: 1;
+  transform: scale(1.2) rotate(0deg) scaleY(-1);
+  /* filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.45)); */
+}
+
+.peacock-feathers.top-right-feathers {
+  left: auto;
+  right: -28px;
+  top: 100px;
+  bottom: 10px;
+  width: min(24vw, 240px);
+  opacity: 0.72;
+  transform: scaleX(-1);
+  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.32));
 }
 
 .lotus-cluster {
-  right: max(-18px, 2vw);
+  right: max(-180px, 180vw);
   bottom: 10px;
   width: min(21vw, 220px);
   opacity: 0.84;
@@ -192,7 +291,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .content-wrapper::before,
 .content-wrapper::after {
-  content: '';
+  /* content: '';
   position: fixed;
   left: 24px;
   right: 24px;
@@ -203,16 +302,16 @@ h1, h2, h3, h4, h5, h6 {
     radial-gradient(ellipse at 50% 50%, rgba(224, 68, 147, 0.86) 0 15%, transparent 16%) 0 50% / 72px 100% repeat-x,
     radial-gradient(ellipse at 50% 50%, rgba(244, 201, 103, 0.92) 0 10%, transparent 11%) 36px 50% / 72px 100% repeat-x,
     linear-gradient(90deg, transparent, rgba(244, 201, 103, 0.9), transparent) 0 50% / 100% 1px no-repeat;
-  opacity: 0.72;
+  opacity: 0.72; */
+  display: none;
 }
 
 .content-wrapper::before {
-  top: 8px;
+  display:none;
 }
 
 .content-wrapper::after {
-  bottom: 8px;
-  transform: rotate(180deg);
+  display:none;
 }
 
 .content-wrapper {

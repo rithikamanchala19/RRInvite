@@ -126,133 +126,54 @@ export const LotusDesign: React.FC<{ className?: string }> = ({ className = '' }
   </svg>
 );
 
-export const PeacockFeathers: React.FC<{ className?: string }> = ({ className = '' }) => (
-  <svg
-    className={className}
-    viewBox="0 0 360 420"
-    xmlns="http://www.w3.org/2000/svg"
-    width="360"
-    height="420"
-    aria-hidden="true"
-  >
-    <defs>
-      <radialGradient id="featherEye" cx="50%" cy="48%" r="52%">
-        <stop offset="0%" stopColor="#0b063f" />
-        <stop offset="32%" stopColor="#0a68b4" />
-        <stop offset="52%" stopColor="#12a78e" />
-        <stop offset="70%" stopColor="#b8852d" />
-        <stop offset="100%" stopColor="#335c1d" />
-      </radialGradient>
-      <linearGradient id="featherStem" x1="0%" x2="100%">
-        <stop offset="0%" stopColor="#6c7d22" />
-        <stop offset="45%" stopColor="#d2ac45" />
-        <stop offset="100%" stopColor="#375615" />
-      </linearGradient>
-      <style>{`
-        .feather-spine { stroke: url(#featherStem); stroke-width: 4; fill: none; stroke-linecap: round; }
-        .feather-strand { stroke: #78a83f; stroke-width: 1.2; fill: none; stroke-linecap: round; opacity: 0.72; }
-        .feather-strand-alt { stroke: #c3a641; opacity: 0.58; }
-        .feather-eye { fill: url(#featherEye); stroke: #e5bd54; stroke-width: 2.5; }
-        .feather-eye-dark { fill: #08043e; opacity: 0.92; }
-      `}</style>
-    </defs>
+export const PeacockFeathers: React.FC<{ className?: string }> = ({ className = '' }) => {
+  const SHRINK = 1.2; // full-size feather
+  const IMG_WIDTH = 360;
+  const IMG_HEIGHT = 280;
 
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 360 420"
+      overflow="visible"
+      xmlns="http://www.w3.org/2000/svg"
+      width="360"
+      height="420"
+      aria-hidden="true"
+    >
+  
     {[
-      { x: 86, y: 274, r: -20, s: 1 },
-      { x: 184, y: 248, r: 18, s: 0.95 },
-      { x: 137, y: 128, r: 8, s: 1.08 },
+      { x: 56, y: 74, r: -10, s: 1, src: '/single-p-feather.png' },
+      { x: 100, y: 180, r: 60, s: 1, src: '/single-p-feather.png' },
+      { x: 100, y: 120, r: 30, s: 1, src: '/single-p-feather.png' },
+
     ].map((feather, index) => (
-      <g key={index} transform={`translate(${feather.x} ${feather.y}) rotate(${feather.r}) scale(${feather.s})`}>
-        <path d="M 0 118 C 9 55, 16 6, 22 -92" className="feather-spine" />
-        {[...Array(18)].map((_, i) => {
-          const y = 102 - i * 10;
-          const length = 76 - i * 2.5;
-          return (
-            <path
-              key={`l-${i}`}
-              d={`M ${8 + i * 0.55} ${y} C ${-length * 0.38} ${y - 22}, ${-length * 0.68} ${y - 46}, ${-length} ${y - 72}`}
-              className={`feather-strand ${i % 3 === 0 ? 'feather-strand-alt' : ''}`}
-            />
-          );
-        })}
-        {[...Array(18)].map((_, i) => {
-          const y = 102 - i * 10;
-          const length = 72 - i * 2.4;
-          return (
-            <path
-              key={`r-${i}`}
-              d={`M ${9 + i * 0.55} ${y} C ${length * 0.42} ${y - 20}, ${length * 0.7} ${y - 44}, ${length} ${y - 70}`}
-              className={`feather-strand ${i % 3 === 1 ? 'feather-strand-alt' : ''}`}
-            />
-          );
-        })}
-        <ellipse cx="22" cy="-92" rx="36" ry="46" transform="rotate(15 22 -92)" className="feather-eye" />
-        <ellipse cx="22" cy="-92" rx="18" ry="24" transform="rotate(28 22 -92)" fill="#0c2aa0" />
-        <ellipse cx="16" cy="-95" rx="12" ry="18" transform="rotate(-35 16 -95)" className="feather-eye-dark" />
-        <ellipse cx="29" cy="-85" rx="10" ry="15" transform="rotate(35 29 -85)" className="feather-eye-dark" />
-      </g>
-    ))}
-  </svg>
-);
-
-export const FlowerGarlands: React.FC<{ className?: string }> = ({ className = '' }) => (
-  <svg
-    className={className}
-    viewBox="0 0 220 500"
-    xmlns="http://www.w3.org/2000/svg"
-    width="220"
-    height="500"
-    aria-hidden="true"
-  >
-    <defs>
-      <linearGradient id="garlandGold" x1="0%" x2="100%">
-        <stop offset="0%" stopColor="#8d5b16" />
-        <stop offset="45%" stopColor="#f5c65b" />
-        <stop offset="100%" stopColor="#9c6419" />
-      </linearGradient>
-      <style>{`
-        .garland-chain { stroke: url(#garlandGold); stroke-width: 2; fill: none; stroke-linecap: round; opacity: 0.92; }
-        .jasmine { fill: #fff5d4; stroke: #d5ad55; stroke-width: 0.8; }
-        .bell { fill: #c01878; stroke: #e8a7b9; stroke-width: 1; }
-        .bead { fill: #bd762c; stroke: #f4c261; stroke-width: 0.8; }
-      `}</style>
-    </defs>
-
-    {[38, 72, 154, 188].map((x, strandIndex) => (
-      <g key={strandIndex}>
-        <path d={`M ${x} 0 C ${x - 8} 92, ${x + 10} 168, ${x} 246`} className="garland-chain" />
-        {[...Array(15)].map((_, i) => {
-          const y = 12 + i * 15;
-          return (
-            <g key={i} transform={`translate(${x + (i % 2 === 0 ? -2 : 2)} ${y})`}>
-              <circle cx="0" cy="0" r="5.4" className="jasmine" />
-              <circle cx="-4" cy="0" r="4.4" className="jasmine" />
-              <circle cx="4" cy="0" r="4.4" className="jasmine" />
-              <circle cx="0" cy="-4" r="4.4" className="jasmine" />
-              <circle cx="0" cy="4" r="4.4" className="jasmine" />
-            </g>
-          );
-        })}
-        <circle cx={x} cy="254" r="8" className="bead" />
-        <path
-          d={`M ${x - 16} 268 C ${x - 10} 246, ${x + 10} 246, ${x + 16} 268 C ${x + 8} 292, ${x - 8} 292, ${x - 16} 268 Z`}
-          className="bell"
+      
+      <g
+        key={index}
+        transform={`translate(${feather.x} ${feather.y}) rotate(${feather.r}) scale(${feather.s * SHRINK})`}
+      >
+        <image
+          href={feather.src}
+          x={-IMG_WIDTH / 2}
+          y={-IMG_HEIGHT / 2 + 30}
+          width={IMG_WIDTH}
+          height={IMG_HEIGHT}
+          preserveAspectRatio="xMidYMid meet"
         />
       </g>
     ))}
+    </svg>
+  );
+};
 
-    <path d="M 6 4 C 48 26, 86 26, 110 6 C 134 26, 172 26, 214 4" className="garland-chain" />
-    {[...Array(7)].map((_, i) => (
-      <path
-        key={i}
-        d={`M ${22 + i * 30} 16 C ${30 + i * 30} 34, ${42 + i * 30} 34, ${50 + i * 30} 16 C ${42 + i * 30} 25, ${30 + i * 30} 25, ${22 + i * 30} 16 Z`}
-        fill="#daa03a"
-        stroke="#f5c65b"
-        strokeWidth="1"
-        opacity="0.9"
-      />
-    ))}
-  </svg>
+export const FlowerGarlands: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <img
+    className={className}
+    src="/straight-lotus-garland.png"
+    alt=""
+    aria-hidden="true"
+  />
 );
 
 export const GaneshIcon: React.FC<{ className?: string }> = ({ className = '' }) => (

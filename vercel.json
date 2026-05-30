@@ -4,8 +4,6 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "env": {
-    "ADMIN_PASSWORD": {
-      "description": "Admin dashboard password"
-    }
+    "ADMIN_PASSWORD": "rangapravesham2026"
   }
 }

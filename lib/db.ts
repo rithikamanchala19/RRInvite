@@ -1,52 +1,59 @@
-// Using in-memory database for MVP (can be replaced with PostgreSQL/MongoDB for production)
-interface Guest {
-  id: string;
-  name: string;
-  attending: boolean;
-  numGuests: number;
-  comments: string;
-  createdAt: Date;
+import { PrismaClient } from '@prisma/client';
+
+declare global {
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined;
 }
 
-let guests: Guest[] = [];
-let idCounter = 1;
+const prisma = global.prisma ?? new PrismaClient();
+if (process.env.NODE_ENV !== 'production') global.prisma = prisma;
 
 export const db = {
-  addGuest: (
+  addGuest: async (
     name: string,
+    email: string,
     attending: boolean,
     numGuests: number,
     comments: string
-  ): Guest => {
-    const guest: Guest = {
-      id: String(idCounter++),
-      name,
-      attending,
-      numGuests,
-      comments,
-      createdAt: new Date(),
-    };
-    guests.push(guest);
-    return guest;
+  ) => {
+    return prisma.guest.upsert({
+      where: { email },
+      update: {
+        name,
+        attending,
+        numGuests,
+        comments,
+      },
+      create: {
+        name,
+        email,
+        attending,
+        numGuests,
+        comments,
+      },
+    });
   },
 
-  getGuests: (): Guest[] => {
-    return guests;
+  getGuests: async () => {
+    return prisma.guest.findMany({
+      where: { attending: true },
+      orderBy: { createdAt: 'desc' },
+    });
   },
 
-  getAttendingGuests: (): Guest[] => {
-    return guests.filter((g) => g.attending);
-  },
-
-  getAdminStats: () => {
+  getAdminStats: async () => {
+    const guests = await prisma.guest.findMany({
+      orderBy: { createdAt: 'desc' },
+    });
     const attending = guests.filter((g) => g.attending);
     const totalGuests = attending.reduce((sum, g) => sum + g.numGuests, 0);
+
     return {
       totalResponses: guests.length,
       attending: attending.length,
       notAttending: guests.length - attending.length,
-      totalGuests: totalGuests,
-      guests: guests,
+      totalGuests,
+      guests,
     };
   },
 };

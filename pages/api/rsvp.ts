@@ -1,20 +1,21 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '@/lib/db';
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    const { name, attending, numGuests, comments } = req.body;
+    const { name, email, attending, numGuests, comments } = req.body;
 
-    if (!name || attending === undefined) {
+    if (!name || !email || attending === undefined) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
     try {
-      const guest = db.addGuest(
+      const guest = await db.addGuest(
         name,
+        email,
         attending,
         attending ? numGuests || 1 : 0,
         comments || ''
